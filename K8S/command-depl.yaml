@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: command-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commandservice
+  template:
+    metadata:
+      labels:
+        app: commandservice
+    spec:
+      containers:
+      - name: commandservice
+        image: rohitrustagi007/commandservice
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
