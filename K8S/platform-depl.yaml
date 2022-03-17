@@ -20,3 +20,19 @@ spec:
             memory: "128Mi"
             cpu: "500m"
 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    app: platformservice
+  ports:
+  - name: platformservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
+
