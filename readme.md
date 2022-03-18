@@ -23,11 +23,20 @@ kubectl version
 
 kubectl apply -f K8s/platform-depl.yaml
 
-kubectl delete deploy platform-depl 
+kubectl delete deploy platforms-depl 
+
+
 
 kubectl apply -f K8s/command-depl.yaml
 
 kubectl delete deploy command-depl 
+
+
+
+kubectl apply -f .\K8s\ingress-nginx-srv.yaml
+
+kubectl delete deploy ingress-nginx-srv 
+
 
 kubectl describe pod platforms-depl-85c65658cd-44zc8  
 
