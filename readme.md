@@ -20,10 +20,15 @@ kubectl apply -f K8s/platform-depl.yaml
 
 kubectl delete deploy platforms-depl 
 
+kubectl delete service platform-cluster-ip
+
+
 
 kubectl apply -f K8s/command-depl.yaml
 
 kubectl delete deploy command-depl 
+
+kubectl delete service command-cluster-ip
 
 ## Ingress
 
@@ -35,7 +40,7 @@ kubectl delete ingress ingress-nginx-srv
 
 kubectl apply -f .\K8s\local-pvc.yaml
 
-kubectl delete pvc local-pvc
+kubectl delete pvc sqlserver-pvc
 
 ## Secrets
 
@@ -50,7 +55,9 @@ kubectl apply -f .\K8s\mssql-depl.yaml
 
 kubectl delete deploy mssql-depl
 
+kubectl delete service mssql-loadbalancer
 
+kubectl delete service mssql-cluster-ip
 
 # Helpers
 
