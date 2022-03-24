@@ -34,7 +34,7 @@ resource "kubernetes_deployment" "platformservice" {
   }
 }
 
-resource "kubernetes_service" "example" {
+resource "kubernetes_service" "platform-cluster-ip" {
   metadata {
     name = "platform-cluster-ip"
   }
