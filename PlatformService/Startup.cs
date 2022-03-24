@@ -19,21 +19,31 @@ namespace PlatformService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
 
+        private IWebHostEnvironment _env { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PlatformAppDbContext>(optionsAction: options => options.UseInMemoryDatabase("InMemDb"));
+            if (_env.IsProduction())
+            {
+                 services.AddDbContext<PlatformAppDbContext>(optionsAction: options => options.UseSqlServer(Configuration.GetConnectionString("PlatformDB")));
+            }
+            else
+             {
+                services.AddDbContext<PlatformAppDbContext>(optionsAction: options => options.UseInMemoryDatabase("InMemDB"));
+            }
             services.AddScoped<IPlatfomRepo, PlatformRepo>();
-            services.AddHttpClient<ICommandDataClient,HttpCommandDataClient>();
+            services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddControllers();
-            
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddSwaggerGen(c =>
