@@ -22,7 +22,7 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: "Ducker Hub Service Connection"
+        containerRegistry: "Docker Hub Service Connection"
         repository: 'rohitrustagi007/platformservice'
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/PlatformService/Dockerfile'
