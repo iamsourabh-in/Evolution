@@ -11,7 +11,7 @@ resource "kubernetes_persistent_volume" "sql-pv" {
     access_modes = ["ReadWriteOnce"]
     persistent_volume_source {
       host_path {
-        path = "/temp/test"
+        path = "/temp/test" 
         type = "DirectoryOrCreate"
       }
     }
