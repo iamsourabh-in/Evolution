@@ -28,9 +28,9 @@ stages:
         tags: |
           $(tag)
     - task: Docker@2
-          inputs:
-            containerRegistry: "Ducker Hub Service Connection"
-            command: buildAndPush
-            dockerfile: '$(Build.SourcesDirectory)/PlatformService/Dockerfile'
-            tags: |
-              $(tag)
+      inputs:
+        containerRegistry: "Ducker Hub Service Connection"
+        command: buildAndPush
+        dockerfile: '$(Build.SourcesDirectory)/PlatformService/Dockerfile'
+        tags: |
+           $(tag)
