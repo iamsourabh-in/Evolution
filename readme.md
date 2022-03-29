@@ -103,6 +103,8 @@ kubectl apply -f ./K8S/setup/service-account.yaml
 
 kubectl apply -f ./K8S/setup/role-binding.yaml   
 
+#- gennerate token from belo command
+
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/sourabhr -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 
 ## Terraform
