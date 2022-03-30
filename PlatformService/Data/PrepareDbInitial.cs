@@ -23,44 +23,44 @@ namespace PlatformService.Data
 
         private static void SeedData(PlatformAppDbContext platformAppDbContext, IWebHostEnvironment env)
         {
+            System.Console.WriteLine("Applying Migrations");
+            System.Console.WriteLine(env.IsProduction().ToString());
             if(env.IsProduction())
             {
-                System.Console.WriteLine("Applying Migrations");
+                System.Console.WriteLine("Applying Migrations Inside.");
                 platformAppDbContext.Database.Migrate();
             }
             else
             {
-
-            if (!platformAppDbContext.Platforms.Any())
-            {
-                Console.WriteLine("Seeding Data.....");
-                platformAppDbContext.Platforms.AddRange(
-                    new Platform()
-                    {
-                        Name = "Dotnet",
-                        Publisher = "Microsoft",
-                        Cost = "Free",
-                    },
-                    new Platform()
-                    {
-                        Name = "SQL Server",
-                        Publisher = "Microsoft",
-                        Cost = "Free",
-                    },
-                    new Platform()
-                    {
-                        Name = "Kubernetes",
-                        Publisher = "Cloud Native Computing Foundation",
-                        Cost = "Free",
-                    }
-                );
-                platformAppDbContext.SaveChanges();
-
-            }
-            else
-            {
-                Console.WriteLine("Data already Present");
-            }
+                if (!platformAppDbContext.Platforms.Any())
+                {
+                    Console.WriteLine("Seeding Data.....");
+                    platformAppDbContext.Platforms.AddRange(
+                        new Platform()
+                        {
+                            Name = "Dotnet",
+                            Publisher = "Microsoft",
+                            Cost = "Free",
+                        },
+                        new Platform()
+                        {
+                            Name = "SQL Server",
+                            Publisher = "Microsoft",
+                            Cost = "Free",
+                        },
+                        new Platform()
+                        {
+                            Name = "Kubernetes",
+                            Publisher = "Cloud Native Computing Foundation",
+                            Cost = "Free",
+                        }
+                    );
+                    platformAppDbContext.SaveChanges();
+                }
+                else
+                {
+                    Console.WriteLine("Data already Present");
+                }   
             }
 
         }

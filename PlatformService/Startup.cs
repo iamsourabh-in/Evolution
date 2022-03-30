@@ -74,7 +74,6 @@ namespace PlatformService
             });
 
             PrepareDbInitial.PrePoulateData(app, env);
-
         }
     }
 }
