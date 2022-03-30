@@ -35,6 +35,8 @@ kubectl delete service command-cluster-ip
 
 ## Ingress
 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
+
 kubectl apply -f .\K8s\ingress-nginx-srv.yaml
 
 kubectl delete ingress ingress-nginx-srv 
