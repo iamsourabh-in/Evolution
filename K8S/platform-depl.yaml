@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
       - name: platformservice
-        image: rohitrustagi007/platformservice
+        image: rohitrustagi007/platformservice:14
+        env: 
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Production" 
         resources:
           limits:
             memory: "128Mi"
