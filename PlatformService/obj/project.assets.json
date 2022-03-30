@@ -6126,11 +6126,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\codebase\\git_space\\Evolution\\PlatformService\\PlatformService.csproj",
+      "projectUniqueName": "D:\\Work\\git_space\\Evolution\\PlatformService\\PlatformService.csproj",
       "projectName": "PlatformService",
-      "projectPath": "D:\\Work\\codebase\\git_space\\Evolution\\PlatformService\\PlatformService.csproj",
+      "projectPath": "D:\\Work\\git_space\\Evolution\\PlatformService\\PlatformService.csproj",
       "packagesPath": "C:\\Users\\Sourabh\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\codebase\\git_space\\Evolution\\PlatformService\\obj\\",
+      "outputPath": "D:\\Work\\git_space\\Evolution\\PlatformService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -116,3 +116,10 @@ terraform apply
 terraform destroy
 
 ## minikube
+
+
+
+
+## Migrations
+
+dotnet ef migrations add <name>

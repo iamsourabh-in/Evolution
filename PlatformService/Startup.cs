@@ -73,7 +73,7 @@ namespace PlatformService
                 endpoints.MapControllers();
             });
 
-            PrepareDbInitial.PrePoulateData(app);
+            PrepareDbInitial.PrePoulateData(app, env);
 
         }
     }
