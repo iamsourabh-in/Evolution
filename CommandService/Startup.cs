@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using CommandService.Data;
 using CommandService.EventProcessing;
 using CommandService.Subscribers;
+using CommandService.SyncDataServices.Grpc;
 
 namespace CommandService
 {
@@ -35,7 +36,8 @@ namespace CommandService
             );
 
             services.AddScoped<ICommandRepo, CommandRepo>();
-            services.AddSingleton<IEventProcessor,EventProcessor>();
+            services.AddSingleton<IEventProcessor, EventProcessor>();
+            services.AddScoped<IPlatformDataClient, PlatformDataClient>();
             services.AddControllers();
             services.AddHostedService<MessageBusSubscriber>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
