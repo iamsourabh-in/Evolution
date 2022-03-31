@@ -1,31 +1,31 @@
 # Evolution 
 
-Could-first
+Cloud first approach for building dotnet applications
 
 # Docker
+
+```sh
 
 docker build -t rohitrustagi007/platformservice .
 
 docker push rohitrustagi007/platformservice
 
-
-
 docker build -t rohitrustagi007/commandservice .
 
 docker push rohitrustagi007/commandservice
 
-
+```
 # Kubenetes
 
 
 ## Deployments
+
+```sh
 kubectl apply -f K8s/platform-depl.yaml
 
 kubectl delete deploy platforms-depl 
 
 kubectl delete service platform-cluster-ip
-
-
 
 kubectl apply -f K8s/command-depl.yaml
 
@@ -33,7 +33,11 @@ kubectl delete deploy command-depl
 
 kubectl delete service command-cluster-ip
 
+```
+
 ## Ingress
+
+```sh
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
 
@@ -41,11 +45,16 @@ kubectl apply -f .\K8s\ingress-nginx-srv.yaml
 
 kubectl delete ingress ingress-nginx-srv 
 
+```
+
 ## Persistance volume claims
+```sh
 
 kubectl apply -f .\K8s\local-pvc.yaml
 
 kubectl delete pvc sqlserver-pvc
+
+```
 
 ## Secrets
 
@@ -125,3 +134,31 @@ terraform destroy
 ## Migrations
 
 dotnet ef migrations add <name>
+
+
+# Redis
+kubectl apply -f ./k8S/redis/redis-config.yaml
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
+OR
+kubectl apply -f ./k8S/redis/redis-pod.yaml
+
+kubectl get pod/redis configmap/redis-config 
+
+kubectl describe configmap/redis-config
+
+### Further Configurations
+
+kubectl exec -it redis -- redis-cli
+
+127.0.0.1:6379> CONFIG GET maxmemory
+
+127.0.0.1:6379> CONFIG GET maxmemory-policy
+
+
+
+# Refrences
+
+- Redis Setup : https://kubernetes.io/docs/tutorials/configuration/configure-redis-using-configmap/
