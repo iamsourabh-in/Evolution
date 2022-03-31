@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
 using System.Collections.Generic;
-
+using AutoMapper;
+using CommandService.Data;
+using CommandService.Dtos;
+using Microsoft.AspNetCore.Mvc;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CommandService.Controllers
@@ -9,43 +12,31 @@ namespace CommandService.Controllers
     [ApiController]
     public class PlatformsController : ControllerBase
     {
-        // GET: api/<PlatformsController>
+        private readonly ICommandRepo _repository;
+        private readonly IMapper _mapper;
+
+        public PlatformsController(ICommandRepo repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<PlatformreadDto>> GetPlatforms()
         {
-            return new string[] { "value1", "value2" };
+            Console.WriteLine("--> Getting Platforms from CommandsService");
+
+            var platformItems = _repository.GetAllPlatforms();
+
+            return Ok(_mapper.Map<IEnumerable<PlatformreadDto>>(platformItems));
         }
 
-        // GET api/<PlatformsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<PlatformsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult TestInboundConnection()
         {
-        }
+            Console.WriteLine("--> Inbound POST # Command Service");
 
-        // PUT api/<PlatformsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PlatformsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-
-        [HttpPost("test")]
-        public ActionResult test()
-        {
-            System.Console.WriteLine("-> Inbound connection");
-            return Ok("response from Command Service");
+            return Ok("Inbound test of from Platforms Controler");
         }
     }
 }
