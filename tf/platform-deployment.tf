@@ -48,7 +48,12 @@ resource "kubernetes_service" "platform-cluster-ip" {
       target_port = 80
       protocol = "TCP"
     }
-
+    port {
+      name = "platformgrpc"
+      port        = 80
+      target_port = 80
+      protocol = "TCP"
+    }
     type = "ClusterIP"
   }
 }
