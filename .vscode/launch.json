@@ -4,11 +4,33 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+        
         {
-            "name": ".NET Core Launch (web)",
+            "name": "Command Service Launch",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build_command",
+            "program": "${workspaceFolder}/CommandService/bin/Debug/net5.0/commandservice.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/CommandService",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Platform Service Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_platform",
             "program": "${workspaceFolder}/PlatformService/bin/Debug/net5.0/PlatformService.dll",
             "args": [],
             "cwd": "${workspaceFolder}/PlatformService",

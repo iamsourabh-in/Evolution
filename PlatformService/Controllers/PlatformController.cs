@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PlatformService.AsyncDataServices;
 
 namespace PlatformService.Controllers
 {
@@ -19,12 +20,14 @@ namespace PlatformService.Controllers
         private readonly IPlatfomRepo _platformRepo;
         private readonly IMapper _mapper;
         private readonly ICommandDataClient _commandDataClient;
+        private readonly IMessageBusClient _messageBusClient;
 
-        public PlatformController(IPlatfomRepo platformRepo, IMapper mapper, ICommandDataClient commandDataClient)
+        public PlatformController(IPlatfomRepo platformRepo, IMapper mapper, ICommandDataClient commandDataClient,IMessageBusClient messageBusClient)
         {
             _platformRepo = platformRepo;
             _mapper = mapper;
             _commandDataClient = commandDataClient;
+            _messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -65,7 +68,19 @@ namespace PlatformService.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("-> Could not send Sync");
+            }
+
+            
+            try
+            {
+                var publishEvent = _mapper.Map<PlatformPublishedDto>(readModel);
+                publishEvent.Event = "Platform Published Event";
+                _messageBusClient.PublishNewPlatform(publishEvent);
+            }
+            catch (Exception ex)
+            {
+                 Console.WriteLine("-> Could not send Async");
             }
 
             return CreatedAtAction(nameof(Details), new { Id = platformCreateModel.Id }, readModel);

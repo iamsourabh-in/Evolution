@@ -2,7 +2,23 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build_command",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/CommandService/CommandService.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build_platform",
             "command": "dotnet",
             "type": "process",
             "args": [
