@@ -2,7 +2,7 @@ using PlatformService.Dtos;
 using System;
 using System.Threading.Tasks;
 
-namespace PlatformService.CommandDataServiceClient
+namespace PlatformService.SyncDataServices
 {
     public interface ICommandDataClient
     {

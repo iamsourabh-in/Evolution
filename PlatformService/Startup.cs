@@ -8,13 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using PlatformService.CommandDataServiceClient;
+using PlatformService.SyncDataServices;
+using PlatformService.SyncDataServices.Grpc;
 using PlatformService.Data;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlatformService.AsyncDataServices;
+using Microsoft.AspNetCore.Http;
 
 namespace PlatformService
 {
@@ -35,23 +38,34 @@ namespace PlatformService
         {
             if (_env.IsProduction())
             {
-                 services.AddDbContext<PlatformAppDbContext>(optionsAction: options => options.UseSqlServer(Configuration.GetConnectionString("PlatformDB")));
+                services.AddDbContext<PlatformAppDbContext>(
+                    optionsAction: options =>
+                        options.UseSqlServer(Configuration.GetConnectionString("PlatformDB"))
+                );
             }
             else
-             {
-                services.AddDbContext<PlatformAppDbContext>(optionsAction: options => options.UseInMemoryDatabase("InMemDB"));
+            {
+                services.AddDbContext<PlatformAppDbContext>(
+                    optionsAction: options => options.UseInMemoryDatabase("InMemDB")
+                );
             }
             services.AddScoped<IPlatfomRepo, PlatformRepo>();
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
-            services.AddScoped<IMessageBusClient,MessageBusClient>();
+            services.AddScoped<IMessageBusClient, MessageBusClient>();
+            services.AddGrpc();
             services.AddControllers();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
-            });
+            services.AddSwaggerGen(
+                c =>
+                {
+                    c.SwaggerDoc(
+                        "v1",
+                        new OpenApiInfo { Title = "PlatformService", Version = "v1" }
+                    );
+                }
+            );
 
             Console.WriteLine($"{Configuration["CommandService"]} this is used.");
         }
@@ -63,17 +77,25 @@ namespace PlatformService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlatformService v1"));
+                app.UseSwaggerUI(
+                    c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlatformService v1")
+                );
             }
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(
+                endpoints =>
+                {
+                    endpoints.MapControllers();
+                    endpoints.MapGrpcService<GrpcPlatformService>();
+                    endpoints.MapGet("/protos/platform.proto", async context => {
+                        await context.Response.WriteAsync(File.ReadAllText("PRotos/platforms.proto"));
+                    });
+                }
+            );
 
             PrepareDbInitial.PrePoulateData(app, env);
         }
