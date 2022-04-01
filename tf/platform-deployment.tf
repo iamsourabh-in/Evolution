@@ -11,7 +11,7 @@ resource "kubernetes_deployment" "platformservice" {
         app = "platformservice"
       }
     }
-    replicas = 2
+    replicas = 1
     template {
 
       metadata {
@@ -50,8 +50,8 @@ resource "kubernetes_service" "platform-cluster-ip" {
     }
     port {
       name = "platformgrpc"
-      port        = 80
-      target_port = 80
+      port        = 666
+      target_port = 666
       protocol = "TCP"
     }
     type = "ClusterIP"

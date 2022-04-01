@@ -11,7 +11,7 @@ resource "kubernetes_deployment" "commandservice" {
         app = "commandservice"
       }
     }
-    replicas = 2
+    replicas = 1
     template {
 
       metadata {

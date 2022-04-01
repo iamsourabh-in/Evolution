@@ -125,6 +125,8 @@ terraform plan
 
 terraform apply
 
+terraform apply -target=aws_security_group.my_sg
+
 terraform destroy
 ```
 ## minikube
