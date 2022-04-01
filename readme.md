@@ -130,6 +130,23 @@ kubectl delete service mssql-cluster-ip
 # Redis
 ```sh
 kubectl apply -f ./k8S/redis/redis-config.yaml
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
+OR
+kubectl apply -f ./k8S/redis/redis-pod.yaml
+
+kubectl get pod/redis configmap/redis-config 
+
+kubectl describe configmap/redis-config
+
+### Further Configurations
+
+kubectl exec -it redis -- redis-cli
+
+127.0.0.1:6379> CONFIG GET maxmemory
+
+127.0.0.1:6379> CONFIG GET maxmemory-policy
+
 ```
 
 # Helpers
@@ -193,28 +210,6 @@ terraform destroy
 ```sh
 dotnet ef migrations add <name>
 ```
-
-
-
-
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
-OR
-kubectl apply -f ./k8S/redis/redis-pod.yaml
-
-kubectl get pod/redis configmap/redis-config 
-
-kubectl describe configmap/redis-config
-
-### Further Configurations
-
-kubectl exec -it redis -- redis-cli
-
-127.0.0.1:6379> CONFIG GET maxmemory
-
-127.0.0.1:6379> CONFIG GET maxmemory-policy
-
-
 
 # Refrences
 
