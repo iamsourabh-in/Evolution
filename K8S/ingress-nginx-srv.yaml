@@ -19,7 +19,7 @@ spec:
             name: platform-cluster-ip
             port: 
               number: 80
-      - path: /api/c/platforms/test
+      - path: /api/c/platforms
         pathType: Prefix
         backend:
           service:
