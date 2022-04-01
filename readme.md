@@ -2,6 +2,8 @@
 
 Cloud first approach for building dotnet applications
 
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/_docs/images/clean.png)
+
 # Docker
 
 ```sh
