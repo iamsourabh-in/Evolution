@@ -10,6 +10,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PlatformService.AsyncDataServices;
+using System.Net.Http;
+using Microsoft.Extensions.Configuration;
+using PlatformService.Policies;
 
 namespace PlatformService.Controllers
 {
@@ -21,13 +24,27 @@ namespace PlatformService.Controllers
         private readonly IMapper _mapper;
         private readonly ICommandDataClient _commandDataClient;
         private readonly IMessageBusClient _messageBusClient;
+        private readonly IConfiguration _config;
+        private readonly ClientPolicy _clientPolicy;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public PlatformController(IPlatfomRepo platformRepo, IMapper mapper, ICommandDataClient commandDataClient,IMessageBusClient messageBusClient)
+        public PlatformController(
+            IHttpClientFactory httpClientFactory,
+            ClientPolicy clientPolicy,
+            IPlatfomRepo platformRepo,
+            IMapper mapper,
+            ICommandDataClient commandDataClient,
+            IMessageBusClient messageBusClient,
+            IConfiguration config
+        )
         {
             _platformRepo = platformRepo;
             _mapper = mapper;
             _commandDataClient = commandDataClient;
             _messageBusClient = messageBusClient;
+            _config = config;
+            _clientPolicy = clientPolicy;
+            _httpClientFactory = httpClientFactory;
         }
 
         [HttpGet]
@@ -49,7 +66,6 @@ namespace PlatformService.Controllers
             return Ok(platform);
         }
 
-
         // POST: PlatformController/Create
         [HttpPost]
         public async Task<ActionResult> Create(PlatformCreateDto platformCreateDto)
@@ -61,7 +77,6 @@ namespace PlatformService.Controllers
 
             var readModel = _mapper.Map<PlatformReadDto>(platformCreateModel);
 
-
             try
             {
                 await _commandDataClient.SendPlatformToCommand(readModel);
@@ -71,7 +86,6 @@ namespace PlatformService.Controllers
                 Console.WriteLine("-> Could not send Sync");
             }
 
-            
             try
             {
                 var publishEvent = _mapper.Map<PlatformPublishedDto>(readModel);
@@ -80,15 +94,54 @@ namespace PlatformService.Controllers
             }
             catch (Exception ex)
             {
-                 Console.WriteLine("-> Could not send Async");
+                Console.WriteLine("-> Could not send Async");
             }
 
             return CreatedAtAction(nameof(Details), new { Id = platformCreateModel.Id }, readModel);
-
         }
 
+        // POST: PlatformController/Create
+        [HttpGet("Robust")]
+        public async Task<ActionResult> Robust(PlatformCreateDto platformCreateDto)
+        {
+            Console.WriteLine("Entered Robust");
+
+            var client = _httpClientFactory.CreateClient(); 
+
+            //var response = await client.GetAsync(_config["CommandService"]);
+
+            var response = await _clientPolicy.ExceptionPolicy.ExecuteAsync(
+                () => {Console.WriteLine("Entered Policy");var response = client.GetAsync(_config["CommandService"]); return response;}
+            );
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Response Service");
+                return Ok();
+            }
+
+            return StatusCode(StatusCodes.Status500InternalServerError);
+
+            // var platformCreateModel = _mapper.Map<Platform>(platformCreateDto);
+
+            // await _platformRepo.CreatePlatform(platformCreateModel);
+            // _platformRepo.SaveChanges();
+
+            // var readModel = _mapper.Map<PlatformReadDto>(platformCreateModel);
 
 
+            // try
+            // {
+            //     await _commandDataClient.SendPlatformToCommand(readModel);
+            // }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine("-> Could not send Sync");
+            // }
 
+
+            // return CreatedAtAction(nameof(Details), new { Id = platformCreateModel.Id }, response);
+
+        }
     }
 }

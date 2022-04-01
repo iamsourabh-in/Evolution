@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PlatformService.AsyncDataServices;
 using Microsoft.AspNetCore.Http;
+using PlatformService.Policies;
 
 namespace PlatformService
 {
@@ -49,9 +50,11 @@ namespace PlatformService
                     optionsAction: options => options.UseInMemoryDatabase("InMemDB")
                 );
             }
+            services.AddHttpClient();
             services.AddScoped<IPlatfomRepo, PlatformRepo>();
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddScoped<IMessageBusClient, MessageBusClient>();
+            services.AddSingleton<ClientPolicy>(new ClientPolicy());
             services.AddGrpc();
             services.AddControllers();
 
