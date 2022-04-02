@@ -73,13 +73,13 @@ docker push rohitrustagi007/commandservice
 **Deployments**
 
 ```sh
-kubectl apply -f K8s/platform-depl.yaml
+kubectl apply -f Deploy/K8S/platform-depl.yaml
 
 kubectl delete deploy platforms-depl 
 
 kubectl delete service platform-cluster-ip
 
-kubectl apply -f K8s/command-depl.yaml
+kubectl apply -f Deploy/K8S/command-depl.yaml
 
 kubectl delete deploy command-depl 
 
@@ -93,7 +93,7 @@ kubectl delete service command-cluster-ip
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
 
-kubectl apply -f .\K8s\ingress-nginx-srv.yaml
+kubectl apply -f .\Deploy\K8s\ingress-nginx-srv.yaml
 
 kubectl delete ingress ingress-nginx-srv 
 
@@ -102,7 +102,7 @@ kubectl delete ingress ingress-nginx-srv
 **Persistance volume claims**
 ```sh
 
-kubectl apply -f .\K8s\local-pvc.yaml
+kubectl apply -f .\Deploy\K8s\local-pvc.yaml
 
 kubectl delete pvc sqlserver-pvc
 
@@ -116,7 +116,7 @@ kubectl create secret generic mssql --from-literal=SA_PASSWORD="password@1"
 
 **MSSQL Server Express** 
 ```sh
-kubectl apply -f .\K8s\mssql-depl.yaml
+kubectl apply -f .\Deploy\K8s\mssql-depl.yaml
 
 kubectl delete deploy mssql-depl
 
@@ -129,11 +129,11 @@ kubectl delete service mssql-cluster-ip
 
 # Redis
 ```sh
-kubectl apply -f ./k8S/redis/redis-config.yaml
+kubectl apply -f ./Deploy/K8S/redis/redis-config.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
 OR
-kubectl apply -f ./k8S/redis/redis-pod.yaml
+kubectl apply -f ./Deploy/K8S/redis/redis-pod.yaml
 
 kubectl get pod/redis configmap/redis-config 
 
@@ -174,8 +174,8 @@ kubectl port-forward deployment/spekt8 3000:3000
 
 OR LOCAL BELOW
 
-kubectl apply -f .\k8s\spectk8.yaml
-kubectl apply -f .\k8s\admin.yaml 
+kubectl apply -f .\Deploy\K8s\spectk8.yaml
+kubectl apply -f .\Deploy\K8s\admin.yaml 
 kubectl port-forward deployment/spekt8 3000:3000
 ```
 
@@ -187,9 +187,9 @@ kubectl get pods -n kube-system
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
 
-kubectl apply -f ./K8S/setup/service-account.yaml
+kubectl apply -f ./Deploy/K8S/setup/service-account.yaml
 
-kubectl apply -f ./K8S/setup/role-binding.yaml   
+kubectl apply -f ./Deploy/K8S/setup/role-binding.yaml   
 
 #- gennerate token from belo command
 
