@@ -25,7 +25,7 @@ stages:
         containerRegistry: "Docker Hub Service Connection"
         repository: 'rohitrustagi007/platformservice'
         command: buildAndPush
-        dockerfile: '$(Build.SourcesDirectory)/PlatformService/Dockerfile'
+        dockerfile: '$(Build.SourcesDirectory)/Services/PlatformService/Dockerfile'
         tags: |
            $(tag)
 
@@ -44,6 +44,6 @@ stages:
           containerRegistry: "Docker Hub Service Connection"
           repository: 'rohitrustagi007/commandservice'
           command: buildAndPush
-          dockerfile: '$(Build.SourcesDirectory)/CommandService/Dockerfile'
+          dockerfile: '$(Build.SourcesDirectory)/Services/CommandService/Dockerfile'
           tags: |
             $(tag)
