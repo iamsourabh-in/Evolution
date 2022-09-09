@@ -83,7 +83,7 @@ namespace PlatformService.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("-> Could not send Sync");
+                Console.WriteLine("-> Could not send Sync" + ex.Message);
             }
 
             try
@@ -94,7 +94,7 @@ namespace PlatformService.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("-> Could not send Async");
+                Console.WriteLine("-> Could not send Async" + ex.Message);
             }
 
             return CreatedAtAction(nameof(Details), new { Id = platformCreateModel.Id }, readModel);
