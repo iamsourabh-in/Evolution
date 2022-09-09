@@ -75,7 +75,7 @@ namespace CommandService
                 }
             );
 
-            PrepDb.PrepPopulation(app);
+           PrepDb.PrepPopulation(app);
         }
     }
 }
