@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"metrics_server","Source":"registry.terraform.io/cookielab/metrics-server/kubernetes","Version":"0.9.0","Dir":".terraform/modules/metrics_server"}]}

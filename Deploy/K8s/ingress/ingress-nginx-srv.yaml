@@ -19,6 +19,13 @@ spec:
             name: platform-cluster-ip
             port: 
               number: 80
+      - path: /swagger
+        pathType: Prefix
+        backend:
+          service:
+            name: platform-cluster-ip
+            port: 
+              number: 80
       - path: /api/c/platforms
         pathType: Prefix
         backend:

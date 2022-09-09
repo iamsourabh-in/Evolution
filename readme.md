@@ -64,7 +64,33 @@ cd Deploy/local
 
 .\AddToHost.ps1 -Hostname acme.com -DesiredIP 127.0.0.1
 ```
-## Tech
+
+
+## Remove Resources
+
+```sh
+
+kubectl delete -f Deploy/K8S/platform-service
+
+
+kubectl delete -f Deploy\K8s\command-service\
+
+
+kubectl delete -f Deploy/K8S/sql
+
+
+kubectl delete -f Deploy\K8s\ingress\ingress-nginx-srv.yaml
+
+
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
+
+kubectl delete -f .\Deploy\K8s\rabbitmq\
+
+kubectl delete secret generic mssql 
+
+```
+
+### Tech
 
 
 
