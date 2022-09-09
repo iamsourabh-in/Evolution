@@ -13,15 +13,24 @@ It focuses primarly on dotnet applications
 
 ![alt text](https://github.com/iamsourabh-in/Evolution/blob/reorganize/docs/frontpage.png)
 
-## Features
+## Steps to Run
+```sh
 
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
+#Secret for container to fetch
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="password@1"
+
+# Start the SQL Server for Services to Use.
+
+kubectl apply -f Deploy/K8S/sql
+
+# Starting the Platform Service
+kubectl apply -f Deploy/K8S/platform-service
+
+# Exposing a port to 
+kubectl port-forward <pod-name> 8090:80
 
 
+```
 ## Tech
 
 
