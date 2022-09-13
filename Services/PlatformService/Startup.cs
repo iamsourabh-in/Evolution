@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using PlatformService.AsyncDataServices;
 using Microsoft.AspNetCore.Http;
 using PlatformService.Policies;
+using Prometheus;
 
 namespace PlatformService
 {
@@ -76,6 +77,19 @@ namespace PlatformService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Custom Metrics to count requests for each endpoint and the method
+            var counter = Metrics.CreateCounter("platformapi_configure_counter", "Custom Metrics to count requests for each endpoint and the method", new CounterConfiguration
+            {
+                LabelNames = new[] { "method", "endpoint" }
+            });
+            app.Use((context, next) =>
+            {
+                counter.WithLabels(context.Request.Method, context.Request.Path).Inc();
+                return next();
+            });
+            // Use the Prometheus middleware
+            app.UseMetricServer();
+            app.UseHttpMetrics();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

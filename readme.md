@@ -21,6 +21,8 @@ It focuses primarly on dotnet applications
 
 ## Deployment
 
+LEarn how to spin of K8 Cluster  [Click here](https://github.com/iamsourabh-in/Evolution/tree/master/Deploy/readme.md) 
+
 Learn how to deploy to Kubernetes [Click here](https://github.com/iamsourabh-in/Evolution/tree/master/Deploy/readme.md) 
 
 ### Tech
