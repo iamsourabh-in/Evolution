@@ -1,28 +1,43 @@
 
-# Evolution
+# Evolution 
 
 
 
 ## Steps to Deploy to Kubernetes
 Setup the `evolution` namespace and we would be working with dev.
 
+You can either setup using `ksutomize` of if you preffer you can indivisually setup the infra
+
+This would
+- Create a namespace
+- Start a Rabbit MQ Server
+- Create a PVC for SQL Server
+- Creates a secret for SQL Server
+- Starts a SQL Server with the PVC and service attached.
+
 ```sh
 kubectl apply -k .\Deploy\K8s\kustomize\overlays\dev\
 ```
 
-Lets spin up other infra
+or spin up other infra indivisually
 
 ```sh
 # Start Rabbit MQ on Kubernetes
 kubectl apply -f .\Deploy\K8s\rabbitmq\
 
-
 # Secret for sqlServer
 kubectl create secret generic mssql --from-literal=SA_PASSWORD="password@1"
 
+kubectl apply -f .\Deploy\K8s\local-pvc.yaml
+
 # Start the SQL Server for Services to Use.
 kubectl apply -f Deploy/K8S/sql
+```
 
+
+## Deploy Services to Kubernetes
+
+```sh
 # Starting the Platform Service
 kubectl apply -f Deploy/K8S/platform-service
 
