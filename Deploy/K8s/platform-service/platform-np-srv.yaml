@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: platformservice-srv
+  namespace: evolution
 spec:
   type: NodePort
   selector:
