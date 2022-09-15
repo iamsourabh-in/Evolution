@@ -6,3 +6,5 @@ resources:
   - configmap.yaml
   - rabbitmq-server.yaml
   - secret.yaml
+  - mssql-pvc.yaml
+  - mssql-server.yaml
