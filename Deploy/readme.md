@@ -2,6 +2,8 @@
 # Evolution 
 
 
+Learn hot to spin up you own cluster and work with it. [Learn Setup here](https://github.com/iamsourabh-in/Evolution/blob/master/Deploy/setup.md)
+
 
 ## Steps to Deploy to Kubernetes
 Setup the `evolution` namespace and we would be working with dev.

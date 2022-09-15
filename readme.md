@@ -3,7 +3,7 @@
 ### Cloud first approach for building applications
 
 
-![alt text](https://github.com/iamsourabh-in/Evolution/blob/reorganize/docs/frontpage.png)
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/frontpage.png)
 
 
 # Features and Scope
@@ -50,7 +50,7 @@ The Project mainly consist of three services which are built on dotnet.
 # Architecture
 
 
-![alt text](https://github.com/iamsourabh-in/Evolution/blob/reorganize/docs/infra.svg)
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/infra.svg)
 
 
 # Deployment
