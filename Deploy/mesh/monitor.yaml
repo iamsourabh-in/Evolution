@@ -2,7 +2,7 @@ kind: PodMonitor
 apiVersion: monitoring.coreos.com/V1
 metadata:
   name: mesh-cp
-  namespace: kuma-demo
+  namespace: monitoring
 spec:
   selector: 
     matchLables:
