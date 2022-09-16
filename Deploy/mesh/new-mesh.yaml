@@ -4,8 +4,14 @@ kind: Mesh
 metadata:
   name: new-mesh
 spec:
-  mtls:
-    ca:
-      builtin: {}
   metrics:
-    prometheus: {}
+    enabledBackend: prometheus-1
+    backends:
+    - name: prometheus-1
+      type: prometheus
+      conf:
+        skipMTLS: false
+        port: 5670
+        path: /metrics
+        tags: # tags that can be referred in Traffic Permission when metrics are secured by mTLS  
+          kuma.io/service: dataplane-metrics
