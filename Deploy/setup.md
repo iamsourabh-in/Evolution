@@ -124,10 +124,14 @@ kubectl port-forward svc/kuma-control-plane -n kuma-system 5681:5681
 
 ```sh
 
-kubectl create ns flux
+kubectl create ns flux-system
+
+#setup Flux in K8 for pulling you repo for sync
+fluxctl install --git-user=iamsourabh-in --git-email=iamsourabh-in@users.noreply.github.com --git-url=git@github.com:iamsourabh-in/Evolution --git-path=Deploy/K8s/Kustomize/overlays/dev --git-branch=flux --namespace=flux-system | kubectl apply -f -
 
 
-fluxctl install --git-user=iamsourabh-in --git-email=iamsourabh-in@users.noreply.github.com --git-url=git@github.com:iamsourabh-in/Evolution --git-path=Deploy/K8s/Kustomize/overlays/dev --git-branch=reorganize --namespace=flux-system | kubectl apply -f -
+#setup Flux in K8 for pulling you repo for sync
+fluxctl install --git-user=iamsourabh-in --git-email=sourabh.rustagi@hotmail.com --git-url=git@github.com:iamsourabh-in/Evolution --git-path=Deploy/K8s/test --git-branch=flux --namespace=flux-system | kubectl apply -f -
 
 kubectl -n flux-system rollout status deployment/flux
 
