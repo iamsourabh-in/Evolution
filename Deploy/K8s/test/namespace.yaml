@@ -1,0 +1,11 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: test-flux
+
+---
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: new-test-flux
