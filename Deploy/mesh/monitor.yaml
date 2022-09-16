@@ -1,0 +1,15 @@
+kind: PodMonitor
+apiVersion: monitoring.coreos.com/V1
+metadata:
+  name: mesh-cp
+  namespace: default
+spec:
+  selector: 
+    matchLables:
+      app: hello-k8-mesh
+  namespaceSelector: 
+    any: true
+  podMetricEndpoints:
+    - targetPort: 5670
+      path: /metrics 
+      scrapeTimeout: 10s
