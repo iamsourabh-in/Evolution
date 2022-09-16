@@ -21,6 +21,8 @@ spec:
     metadata:
       labels:
         app: hello-k8-mesh
+      annotations:
+        kuma.io/mesh: new-mesh  
     spec:
       containers:
       - name: hello-k8-mesh
