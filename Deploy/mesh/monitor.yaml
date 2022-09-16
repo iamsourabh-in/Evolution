@@ -8,7 +8,8 @@ spec:
     matchLabels:
       app: hello-k8-mesh
   namespaceSelector: 
-    any: true
+    matchNames:
+      - kuma-demo
   podMetricsEndpoints:
     - targetPort: 5670
       path: /metrics 
