@@ -3,3 +3,9 @@ apiVersion: kuma.io/v1alpha1
 kind: Mesh
 metadata:
   name: new-mesh
+spec:
+  mtls:
+    ca:
+      builtin: {}
+  metrics:
+    prometheus: {}
