@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   selector: 
-    matchLables:
+    matchLabels:
       app: hello-k8-mesh
   namespaceSelector: 
     any: true
