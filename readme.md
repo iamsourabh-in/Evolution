@@ -3,10 +3,17 @@
 ### Cloud first approach for building applications
 
 
-![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/frontpage.png)
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/frontpage.png)
+
+# Role and Responsibility of Dev Ops
+
+We would be taking a look at deploying the code to multiple infra.
 
 
-# Features and Scope
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/Ingraphics-devops.png)
+
+
+# Features and Scope of Project
 
 Evolution is a cloud-enabled, devops-ready practice for any applications, built to be deployed on kubernetes.
 
@@ -47,10 +54,21 @@ The Project mainly consist of three services which are built on dotnet.
 
 
 
-# Architecture
+# Application Architecture
 
 
-![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/infra.svg)
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/infra.svg)
+
+
+
+
+# CICD Pipeline
+
+We would be taking a look at deploying the code to multiple infra.
+
+
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/pipeline.svg)
+
 
 
 # Deployment
@@ -59,13 +77,6 @@ The Project mainly consist of three services which are built on dotnet.
 Learn how to deploy to Kubernetes [Click here](https://github.com/iamsourabh-in/Evolution/tree/master/Deploy/readme.md) 
 
 
-
-# Migrations
-```sh
-dotnet ef migrations add <name>
-
-dotnet update-database
-```
 
 # Other Refrences
 
