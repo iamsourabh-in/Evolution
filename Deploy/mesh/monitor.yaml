@@ -1,0 +1,16 @@
+kind: PodMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: mesh-cp
+  namespace: monitoring
+spec:
+  selector: 
+    matchLabels:
+      app: hello-k8-mesh
+  namespaceSelector: 
+    matchNames:
+      - kuma-demo
+  podMetricsEndpoints:
+    - targetPort: 5670
+      path: /metrics 
+      scrapeTimeout: 10s

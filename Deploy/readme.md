@@ -36,6 +36,28 @@ kubectl apply -f .\Deploy\K8s\local-pvc.yaml
 kubectl apply -f Deploy/K8S/sql
 ```
 
+# Configure PRometheues
+
+```sh
+
+kubectl create -f Deploy/Prometheus-operator/manifests/setup/
+
+kubectl create -f Deploy/Prometheus-operator/manifests/
+
+
+#service monitors
+kubectl -n monitoring get servicemonitors
+
+#DASHBOARDS
+
+# Grafana
+kubectl -n monitoring port-forward svc/grafana 3000
+
+#Prometheus
+kubectl -n monitoring port-forward svc/prometheus-operated 9090
+
+```
+
 
 ## Deploy Services to Kubernetes
 
