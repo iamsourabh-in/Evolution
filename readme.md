@@ -67,7 +67,7 @@ The Project mainly consist of three services which are built on dotnet.
 We would be taking a look at deploying the code to multiple infra.
 
 
-![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/pipeline2.drawio.svg)
+![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/pipeline2.drawio.png)
 
 
 
