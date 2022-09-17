@@ -10,3 +10,5 @@ spec:
       app: platformservice
   podMetricsEndpoints:
   - targetPort: 80
+  namespaceSelector:
+    any: true
