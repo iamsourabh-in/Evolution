@@ -2,7 +2,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: platform-svc-monitor
-  namespace: evolution
   labels:
     team: platform-svc-monitor
 spec:
@@ -11,3 +10,5 @@ spec:
       app: platformservice
   endpoints:
   - port: platformservice
+  namespaceSelector:
+    any: true
