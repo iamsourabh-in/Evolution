@@ -26,6 +26,6 @@ spec:
   #serviceMonitorNamespaceSelector: {} #match all namespaces
   serviceMonitorNamespaceSelector:
     matchLabels:
-      kubernetes.io/metadata.name: default
+      kubernetes.io/metadata.name: evolution
   serviceMonitorSelector: {} #match all servicemonitors
   version: 2.32.1
