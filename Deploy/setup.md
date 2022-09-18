@@ -82,6 +82,7 @@ chmod +x kubectl
 mkdir -p ~/.local/bin
 mv ./kubectl ~/.local/bin/kubectl
 # and then append (or prepend) ~/.local/bin to $PATH
+ln -s $PWD/kubectl /usr/local/bin/kubectl
 
 
 kubectl version --client --output=yaml    #client version
