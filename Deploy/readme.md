@@ -46,7 +46,7 @@ kubectl create -f Deploy/Prometheus-operator/manifests/
 
 
 #service monitors
-kubectl -n monitoring get servicemonitors
+kubectl -n monitoring get servicemonitorsa 
 
 #DASHBOARDS
 
@@ -67,7 +67,7 @@ kubectl apply -f Deploy/K8S/platform-service
 
 # Exposing a port to (Just to Check if the service is weorking)
 kubectl port-forward <pod-name> 8090:80
-
+ 
 # Deploying the command services
 kubectl apply -f .\Deploy\K8s\command-service\
 
