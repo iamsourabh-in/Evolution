@@ -1,15 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: platform-svc-monitor
   labels:
-    team: platform-svc-monitor
-  namespace : evolution  
+    prometheus: kube-prometheus
+    app.kubernetes.io/part-of: kube-prometheus
+  name: platform-svc-monitor
+  namespace: monitoring 
 spec:
   selector:
     matchLabels:
       app: platformservice
   endpoints:
   - port: platformservice
-  namespaceSelector:
-    any: true
+
+

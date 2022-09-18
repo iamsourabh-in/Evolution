@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mssql-depl
-  namespace: evolution
+  namespace: monitoring
 spec:
   selector:
     matchLabels:
@@ -41,7 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mssql-cluster-ip
-  namespace: evolution
+  namespace: monitoring
 spec:
   type: ClusterIP
   selector:
@@ -57,7 +57,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mssql-loadbalancer
-  namespace: evolution
+  namespace: monitoring
 spec:
   type: LoadBalancer
   selector:

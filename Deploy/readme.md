@@ -28,7 +28,7 @@ or spin up other infra indivisually
 kubectl apply -f .\Deploy\K8s\rabbitmq\
 
 # Secret for sqlServer
-kubectl create secret generic mssql --from-literal=SA_PASSWORD="password@1"
+kubectl -n evolution create secret generic mssql --from-literal=SA_PASSWORD="password@1"
 
 kubectl apply -f .\Deploy\K8s\local-pvc.yaml
 
@@ -46,7 +46,7 @@ kubectl create -f Deploy/Prometheus-operator/manifests/
 
 
 #service monitors
-kubectl -n monitoring get servicemonitorsa 
+kubectl -n monitoring get servicemonitors
 
 #DASHBOARDS
 
