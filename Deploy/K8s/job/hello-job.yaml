@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dj
+spec:
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+  template:
+    spec:
+      containers:
+      - name: dj
+        image: mcr.microsoft.com/dotnet/runtime
+        command: ["dotnet", "--version"]
+      restartPolicy: Never
