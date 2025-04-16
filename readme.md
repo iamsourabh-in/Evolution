@@ -12,7 +12,6 @@ We would be taking a look at deploying the code to multiple infra.
 
 ![alt text](https://github.com/iamsourabh-in/Evolution/blob/master/docs/images/Ingraphics-devops.png)
 
-
 # Features and Scope of Project
 
 Evolution is a cloud-enabled, devops-ready practice for any applications, built to be deployed on kubernetes.
